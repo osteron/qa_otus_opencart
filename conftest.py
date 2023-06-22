@@ -8,6 +8,7 @@ def pytest_addoption(parser):
     parser.addoption('--browser', default='chrome')
     parser.addoption('--maximize', action='store_true')
     parser.addoption('--headless', action='store_true')
+    parser.addoption('--url', default='http://10.0.2.15:8081/')
 
 
 @pytest.fixture()
