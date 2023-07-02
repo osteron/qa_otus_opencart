@@ -1,11 +1,17 @@
-from pages.register_selectors import RegisterSelectors
-from tests import wait_and_return_element, wait_and_return_elements, IP_ADDRESS
+from page_objects.RegisterPage import RegisterPage
+from faker import Faker
 
 
-def test_admin_page_elements(browser):
+def fake_user() -> list:
+    fake_list = [Faker().name().split()[0], Faker().name().split()[1], Faker().email(), fake_phone_number(Faker()),
+                 Faker().password(length=10)]
+    return fake_list
 
-    browser.get(f'{IP_ADDRESS}:8081/index.php?route=account/register')
-    assert len(wait_and_return_elements(browser, RegisterSelectors.radio_inlines)) == 2
-    wait_and_return_element(browser, RegisterSelectors.agree_checkbox)
-    wait_and_return_element(browser, RegisterSelectors.submit)
-    assert len(wait_and_return_elements(browser, RegisterSelectors.column_right)) == 13
+
+def fake_phone_number(fake: Faker) -> str:
+    return f'+91{fake.msisdn()[3:]}'
+
+
+def test_register_user(browser):
+    RegisterPage(browser).register(*fake_user())
+    assert RegisterPage(browser).validate_register()
