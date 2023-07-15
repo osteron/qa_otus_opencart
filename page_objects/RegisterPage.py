@@ -26,5 +26,5 @@ class RegisterPage(BasePage):
         self.click(self.element(self.SUBMIT_BUTTON))
         return self
 
-    def validate_register(self):
+    def validate_register(self) -> bool:
         return self.get_text_of_element(self.ACCOUNT_CREATED) in self.REGISTER_TEXT

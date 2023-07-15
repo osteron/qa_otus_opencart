@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from typing import List
 
 
-IP_ADDRESS = 'http://'  # paste your local ip address
+IP_ADDRESS = 'http://10.16.49.34'  # paste your local ip address
 
 
 def wait_and_return_element(browser: WebDriver,

@@ -1,6 +1,9 @@
 from pages.admin_selectors import AdminSelectors
 from tests import wait_and_return_element, get_text, IP_ADDRESS
 
+USER = 'user'
+PASSWORD = 'bitnami'
+
 
 def test_admin_page_elements(browser):
     panel_title = 'Please enter your login details.'
