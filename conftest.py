@@ -10,7 +10,7 @@ def pytest_addoption(parser):
     parser.addoption("--url", "-U", default="http://localhost:8081")
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def browser(request):
     """ Фикстура инициализации браузера """
     url = request.config.getoption("--url")

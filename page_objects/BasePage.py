@@ -23,6 +23,12 @@ class BasePage:
         except TimeoutException:
             raise AssertionError(f'Не дождался видимости элемента {locator}')
 
+    def not_visible_element(self, locator: tuple) -> bool:
+        try:
+            return WebDriverWait(self.driver, 2).until(EC.invisibility_of_element_located(locator))
+        except TimeoutException:
+            raise AssertionError(f'Элемент до сих пор виден {locator}')
+
     def click(self, element) -> None:
         ActionChains(self.driver).move_to_element(element).pause(0.1).click().perform()
 
