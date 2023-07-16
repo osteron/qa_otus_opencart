@@ -11,9 +11,6 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def click(self, element) -> None:
-        ActionChains(self.driver).move_to_element(element).pause(0.1).click().perform()
-
     def _input(self, element, value) -> None:
         self.click(element)
         element.clear()
@@ -24,6 +21,10 @@ class BasePage:
             return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(locator))
         except TimeoutException:
             raise AssertionError(f'Не дождался видимости элемента {locator}')
+
+    def click(self, element) -> None:
+        elem = self.element(element)
+        ActionChains(self.driver).move_to_element(elem).pause(0.1).click().perform()
 
     def elements(self, locator: tuple) -> List[WebElement]:
         try:
