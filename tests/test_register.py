@@ -15,6 +15,7 @@ def fake_phone_number(fake: Faker) -> str:
 
 
 def test_register_user(browser):
+    browser.get('http://localhost:8081/index.php?route=account/register')
     RegisterPage(browser).alert_accept()
     time.sleep(1)
     RegisterPage(browser).register(*fake_user())

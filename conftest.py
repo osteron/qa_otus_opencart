@@ -7,7 +7,7 @@ DRIVERS = os.path.expanduser("~/Downloads/drivers")
 
 
 def pytest_addoption(parser):
-    parser.addoption("--url", "-U", default="http://demo.opencart.com")
+    parser.addoption("--url", "-U", default="http://localhost:8081")
 
 
 @pytest.fixture(scope='session')

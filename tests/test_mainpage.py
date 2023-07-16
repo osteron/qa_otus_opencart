@@ -6,6 +6,7 @@ from page_objects.MainPage import MainPage
 
 
 def test_main_page_content(browser: WebDriver) -> None:
+    browser.get('http://localhost:8081')
     assert MainPage(browser).check_title_page('Your Store')
     MainPage(browser).element(MainPage.LOGO)
     MainPage(browser).element(MainPage.SEARCH)
@@ -17,7 +18,7 @@ def test_main_page_content(browser: WebDriver) -> None:
 
 
 def test_switching_currencies(browser: WebDriver) -> None:
-    MainPage(browser).alert_accept()
+    browser.get('http://localhost:8081')
     assert MainPage(browser).get_text_of_element(MainPage.CURRENT_CURRENCY) in '$'
     MainPage(browser).click(MainPage(browser).element(MainPage.CURRENCY))
     MainPage(browser).click(MainPage(browser).element(MainPage.EURO))
