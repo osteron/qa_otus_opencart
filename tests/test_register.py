@@ -1,3 +1,5 @@
+import time
+
 from page_objects.RegisterPage import RegisterPage
 from faker import Faker
 
@@ -13,5 +15,7 @@ def fake_phone_number(fake: Faker) -> str:
 
 
 def test_register_user(browser):
+    RegisterPage(browser).alert_accept()
+    time.sleep(1)
     RegisterPage(browser).register(*fake_user())
     assert RegisterPage(browser).validate_register()

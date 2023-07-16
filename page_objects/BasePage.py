@@ -4,6 +4,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.alert import Alert
 
 
 class BasePage:
@@ -23,8 +24,7 @@ class BasePage:
             raise AssertionError(f'Не дождался видимости элемента {locator}')
 
     def click(self, element) -> None:
-        elem = self.element(element)
-        ActionChains(self.driver).move_to_element(elem).pause(0.1).click().perform()
+        ActionChains(self.driver).move_to_element(element).pause(0.1).click().perform()
 
     def elements(self, locator: tuple) -> List[WebElement]:
         try:
@@ -37,3 +37,9 @@ class BasePage:
 
     def check_title_page(self, title: str) -> bool:
         return self.driver.title in title
+
+    def alert_accept(self) -> None:
+        try:
+            Alert(self.driver).accept()
+        except:
+            return

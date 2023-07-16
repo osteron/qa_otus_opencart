@@ -17,15 +17,16 @@ def test_main_page_content(browser: WebDriver) -> None:
 
 
 def test_switching_currencies(browser: WebDriver) -> None:
+    MainPage(browser).alert_accept()
     assert MainPage(browser).get_text_of_element(MainPage.CURRENT_CURRENCY) in '$'
-    MainPage(browser).click(MainPage.CURRENCY)
-    MainPage(browser).click(MainPage.EURO)
+    MainPage(browser).click(MainPage(browser).element(MainPage.CURRENCY))
+    MainPage(browser).click(MainPage(browser).element(MainPage.EURO))
     assert MainPage(browser).get_text_of_element(MainPage.CURRENT_CURRENCY) in '€'
-    MainPage(browser).click(MainPage.CURRENCY)
-    MainPage(browser).click(MainPage.POUND_STERLING)
+    MainPage(browser).click(MainPage(browser).element(MainPage.CURRENCY))
+    MainPage(browser).click(MainPage(browser).element(MainPage.POUND_STERLING))
     assert MainPage(browser).get_text_of_element(MainPage.CURRENT_CURRENCY) in '£'
-    MainPage(browser).click(MainPage.CURRENCY)
-    MainPage(browser).click(MainPage.DOLLAR)
+    MainPage(browser).click(MainPage(browser).element(MainPage.CURRENCY))
+    MainPage(browser).click(MainPage(browser).element(MainPage.DOLLAR))
     assert MainPage(browser).get_text_of_element(MainPage.CURRENT_CURRENCY) in '$'
 
 
