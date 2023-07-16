@@ -10,7 +10,7 @@ def pytest_addoption(parser):
     parser.addoption("--url", "-U", default="http://demo.opencart.com")
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def browser(request):
     """ Фикстура инициализации браузера """
     url = request.config.getoption("--url")

@@ -12,7 +12,7 @@ def test_main_page_content(browser: WebDriver) -> None:
     MainPage(browser).element(MainPage.CART)
     MainPage(browser).element(MainPage.MENU)
     MainPage(browser).element(MainPage.SLIDESHOW)
-    assert len(MainPage(browser).elements(MainPage.PRODUCT_LAYOUT)) == 3
+    assert len(MainPage(browser).elements(MainPage.PRODUCT_LAYOUT)) == 4
     MainPage(browser).element(MainPage.FOOTER)
 
 
