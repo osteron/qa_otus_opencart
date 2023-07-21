@@ -1,12 +1,11 @@
-from pages.catalog_selectors import CatalogSelectors
-from tests import wait_and_return_element, wait_and_return_elements
+from page_objects.CatalogPage import CatalogPage
 
 
-def test_catalog_elements(browser):
+def test_catalog_page_content(browser):
     browser.get('http://localhost:8081/smartphone')
-    assert browser.title in 'Phones & PDAs'
-    wait_and_return_element(browser, CatalogSelectors.breadcrumb)
-    assert len(wait_and_return_elements(browser, CatalogSelectors.product_layout)) == 3
-    wait_and_return_element(browser, CatalogSelectors.list_group)
-    assert len(wait_and_return_elements(browser, CatalogSelectors.list_group_items)) == 8
-    wait_and_return_element(browser, CatalogSelectors.content)
+    assert CatalogPage(browser).check_title_page('Phones & PDAs')
+    CatalogPage(browser).element(CatalogPage.BREADCRUMB)
+    assert len(CatalogPage(browser).elements(CatalogPage.PRODUCT_LAYOUT)) == 3
+    CatalogPage(browser).element(CatalogPage.LIST_GROUP)
+    assert len(CatalogPage(browser).elements(CatalogPage.LIST_GROUP_ITEMS)) == 8
+    CatalogPage(browser).element(CatalogPage.CONTENT)
